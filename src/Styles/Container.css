@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@400&display=swap');
+
+.general-container{
+    display: flex;
+    flex-direction: row;
+    font-family: 'Dosis', sans-serif;
+}
+
+.lista-container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
