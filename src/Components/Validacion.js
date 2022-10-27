@@ -1,11 +1,11 @@
-import React from "react";
-import { Outlet } from "react-router-dom";
+import React, { useState } from "react";
 
 const Validacion = () => {
+const [values, seValues] =useState("")
+
   return (
     <div>
-    <Outlet />
-    <div>Validacion</div>
+      Validacion
     </div>
   );
 };
