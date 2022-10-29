@@ -1,7 +1,7 @@
 import React from "react";
-import ListaServicios from "./ListaServicios";
 import Nav from "./Nav";
 import "../Styles/Container.css";
+import { Outlet } from "react-router-dom";
 
 
 const Container = () => {
@@ -11,7 +11,7 @@ const Container = () => {
         <Nav />
       </header>
       <div className="lista-container">
-        <ListaServicios />
+        <Outlet />
       </div>
     </div>
   );

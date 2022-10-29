@@ -1,0 +1,44 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
+.form-container {
+    height: 400px;
+    width: 400px;
+    padding: 20px;
+    background-color: #eee;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    border-radius: 10px;
+    border: solid 1px black;
+}
+
+.text {
+    margin: 10px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.input {
+    margin: 10px;
+    height: 20px;
+    width: 250px;
+}
+
+.button {
+    font-size: 15px;
+    font-weight: 500;
+    height: 30px;
+    width: 100px;
+    margin: 10px;
+    border-radius: 8px;
+    background-color: rgb(206, 126, 182);
+    cursor: pointer;
+}
