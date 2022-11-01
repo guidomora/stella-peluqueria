@@ -5,7 +5,6 @@
 
 .empleado-container {
     background-color: #457B9D;
-    width: 100%;
     padding: 15px;
     display: flex;
     flex-wrap: wrap;
@@ -19,8 +18,13 @@
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
+    padding: 10px;
 }
 
 .inputs{
     width: 80px;
+}
+
+.texto {
+    color: white;
 }
