@@ -1,8 +1,11 @@
 import React, { useState } from "react";
-import "../Styles/Validacion.css"
+import { Link } from "react-router-dom";
+import "../Styles/Validacion.css";
 
 const Validacion = () => {
   const [values, setValues] = useState({ user: "", password: "" });
+  const usuario = "tobi";
+  const contra = "stella99";
 
   const handleChange = ({ target }) => {
     setValues((state) => ({
@@ -10,13 +13,12 @@ const Validacion = () => {
       [target.name]: target.value,
     }));
   };
-  console.log(values);
   return (
     <div className="container">
       <div className="form-container">
         <p className="text">User</p>
         <input
-        className="input"
+          className="input"
           type="text"
           name="user"
           value={values.user || ""}
@@ -24,13 +26,15 @@ const Validacion = () => {
         />
         <p className="text">Password</p>
         <input
-        className="input"
-          type="text"
+          className="input"
+          type="password"
           name="password"
           value={values.password}
           onChange={handleChange}
         />
-        <button className="button">Enviar</button>
+        {values.user == usuario && values.password == contra ? (
+          <button className="button"><Link to={"/calculador"}>Ingresar</Link></button>
+        ) : null}
       </div>
     </div>
   );

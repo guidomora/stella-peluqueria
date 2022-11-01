@@ -10,7 +10,7 @@ const Container = () => {
       <header>
         <Nav />
       </header>
-      <div className="lista-container">
+      <div className="main">
         <Outlet />
       </div>
     </div>
