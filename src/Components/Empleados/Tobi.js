@@ -18,6 +18,7 @@ const Tobi = () => {
     Pies: "",
   });
   const precios =[]
+  const [prec, setPrec] = useState([])
 
   const handleChange = ({ target }) => {
     setValues((state) => ({
@@ -57,9 +58,10 @@ const Tobi = () => {
       estetica,
       pies
     );
-    console.log(precios)
+    const preciosSumados = precios.reduce((prev, current) => prev + current)
+    console.log(preciosSumados)
   };
-  
+
   return (
     <div className="bordes">
       <div className="empleado-container">
