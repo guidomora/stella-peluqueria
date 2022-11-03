@@ -17,8 +17,8 @@ const Tobi = () => {
     Estetica: "",
     Pies: "",
   });
-  const precios =[]
-  const [prec, setPrec] = useState([])
+  const precios = [];
+  const [prec, setPrec] = useState([]);
 
   const handleChange = ({ target }) => {
     setValues((state) => ({
@@ -29,38 +29,46 @@ const Tobi = () => {
 
   const cuenta = () => {
     const corte = 0.35 * values.Corte;
-    const lavado = 0.35 * values.Lavado ;
-    const peinado = 0.35 * values.Peinado ;
-    const color = 0.25 *  values.Color;
-    const decoloracion = 0.25  * values.Decoloracion;
-    const nutricion = 0.35  * values.Nutricion;
-    const manos = 0.5 *  values.Manos ;
-    const alisado =0.25 * values.Alisado ;
-    const depilacion =0.5 * values.Depilacion ;
-    const base =0.5 * values.Base ;
+    const lavado = 0.35 * values.Lavado;
+    const peinado = 0.35 * values.Peinado;
+    const color = 0.25 * values.Color;
+    const decoloracion = 0.25 * values.Decoloracion;
+    const nutricion = 0.35 * values.Nutricion;
+    const manos = 0.5 * values.Manos;
+    const alisado = 0.25 * values.Alisado;
+    const depilacion = 0.5 * values.Depilacion;
+    const base = 0.5 * values.Base;
     const maquillaje = 0.5 * values.Maquillaje;
-    const productos = 0.25 *  values.Productos ;
+    const productos = 0.25 * values.Productos;
     const estetica = 0.5 * values.Estetica;
-    const pies = 0.5 * values.Pies ;
-    precios.push(
-      corte,
-      lavado,
-      peinado,
-      color,
-      decoloracion,
-      nutricion,
-      manos,
-      alisado,
-      depilacion,
-      base,
-      maquillaje,
-      productos,
-      estetica,
-      pies
-    );
-    const preciosSumados = precios.reduce((prev, current) => prev + current)
-    console.log(preciosSumados)
+    const pies = 0.5 * values.Pies;
+    const pushear = () => {
+      precios.push(
+        corte,
+        lavado,
+        peinado,
+        color,
+        decoloracion,
+        nutricion,
+        manos,
+        alisado,
+        depilacion,
+        base,
+        maquillaje,
+        productos,
+        estetica,
+        pies
+      );
+    };
+    pushear()
+
+    const preciosSumados = precios.reduce((prev, current) => prev + current);
+    const pasando = () => {
+      setPrec(preciosSumados);
+    };
+    pasando();
   };
+  console.log(prec);
 
   return (
     <div className="bordes">
@@ -201,9 +209,10 @@ const Tobi = () => {
         />
       </div>
       <button onClick={cuenta}>Click</button>
-      <p>Total:</p>
+      <p>Total:{prec}</p>
     </div>
   );
 };
 
 export default Tobi;
+

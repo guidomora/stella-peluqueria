@@ -4,7 +4,7 @@ import Container from "./Components/Container";
 import { Routes, Route } from "react-router-dom";
 import Turnos from "./Components/Turnos";
 import Validacion from "./Components/Validacion";
-import Calculador from "./Components/Calculador";
+import Calculador from "./Components/Calculador/Calculador";
 
 
 function App() {

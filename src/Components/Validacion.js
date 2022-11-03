@@ -32,7 +32,7 @@ const Validacion = () => {
           value={values.password}
           onChange={handleChange}
         />
-        {values.user == usuario && values.password == contra ? (
+        {values.user === usuario && values.password === contra ? (
           <button className="button"><Link to={"/calculador"}>Ingresar</Link></button>
         ) : null}
       </div>

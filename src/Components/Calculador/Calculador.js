@@ -1,5 +1,5 @@
 import React from "react";
-import "../Styles/Calculador.css";
+import "./Calculador.css"
 import Tobi from "./Empleados/Tobi";
 const Calculador = () => {
   return (
