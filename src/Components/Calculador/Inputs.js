@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Inputs = ({nombre}) => {
+const Inputs = ({ nombre }) => {
   const [values, setValues] = useState({
     Corte: "",
     Lavado: "",
@@ -18,7 +18,7 @@ const Inputs = ({nombre}) => {
     Pies: "",
   });
   const precioArray = [];
-  const [prec, setPrec] = useState();
+  const [prec, setPrec] = useState([]);
 
   const handleChange = ({ target }) => {
     setValues((state) => ({
@@ -60,15 +60,16 @@ const Inputs = ({nombre}) => {
         pies
       );
     };
-    pushear();
-
-    const preciosSumados = precioArray.reduce((prev, current) => prev + current);
+    pushear()
+    const preciosSumados = precioArray.reduce(
+      (prev, current) => prev + current
+    );
     const pasando = () => {
       setPrec(preciosSumados);
     };
     pasando();
+    console.log(preciosSumados);
   };
-  console.log(prec);
 
   return (
     <div className="bordes">
@@ -150,7 +151,7 @@ const Inputs = ({nombre}) => {
         <p className="texto">Pies</p>
       </div>
       <div className="input-container">
-      <p>{(nombre)}</p>
+        <p>{nombre}</p>
         <input
           className="inputs"
           type="number"
@@ -214,7 +215,6 @@ const Inputs = ({nombre}) => {
     </div>
   );
 };
-
 
 // const pushear = () => {
 //   precioArray.push(
