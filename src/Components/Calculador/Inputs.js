@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Inputs = () => {
+const Inputs = ({nombre}) => {
   const [values, setValues] = useState({
     Corte: "",
     Lavado: "",
@@ -17,8 +17,8 @@ const Inputs = () => {
     Estetica: "",
     Pies: "",
   });
-  const precios = [];
-  const [prec, setPrec] = useState([]);
+  const precioArray = [];
+  const [prec, setPrec] = useState();
 
   const handleChange = ({ target }) => {
     setValues((state) => ({
@@ -43,7 +43,7 @@ const Inputs = () => {
     const estetica = 0.5 * values.Estetica;
     const pies = 0.5 * values.Pies;
     const pushear = () => {
-      precios.push(
+      precioArray.push(
         corte,
         lavado,
         peinado,
@@ -62,7 +62,7 @@ const Inputs = () => {
     };
     pushear();
 
-    const preciosSumados = precios.reduce((prev, current) => prev + current);
+    const preciosSumados = precioArray.reduce((prev, current) => prev + current);
     const pasando = () => {
       setPrec(preciosSumados);
     };
@@ -82,7 +82,7 @@ const Inputs = () => {
         <p className="texto">Manos</p>
       </div>
       <div className="input-container">
-        <p>Tobi</p>
+        <p>{nombre}</p>
         <input
           className="inputs"
           type="number"
@@ -150,7 +150,7 @@ const Inputs = () => {
         <p className="texto">Pies</p>
       </div>
       <div className="input-container">
-        <p>Tobi</p>
+      <p>{(nombre)}</p>
         <input
           className="inputs"
           type="number"
@@ -210,6 +210,36 @@ const Inputs = () => {
       </div>
       <button onClick={cuenta}>Click</button>
       <p>Total:{prec}</p>
+      <p>Total:{precioArray}</p>
     </div>
   );
 };
+
+
+// const pushear = () => {
+//   precioArray.push(
+//     corte,
+//     lavado,
+//     peinado,
+//     color,
+//     decoloracion,
+//     nutricion,
+//     manos,
+//     alisado,
+//     depilacion,
+//     base,
+//     maquillaje,
+//     productos,
+//     estetica,
+//     pies
+//   );
+// };
+// pushear();
+
+// const preciosSumados = precioArray.reduce((prev, current) => prev + current);
+// const pasando = () => {
+//   setPrec(preciosSumados);
+// };
+// pasando();
+
+export default Inputs;
