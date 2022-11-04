@@ -74,7 +74,7 @@ const Inputs = ({ nombre }) => {
   
   const guardado =[]
   const guardar =() => {
-    guardado.push(prec, ...guardado)
+    guardado.push(prec)
     console.log(guardado)
   }
   console.log(guardado)
