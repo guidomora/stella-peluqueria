@@ -17,7 +17,6 @@ const Inputs = ({ nombre }) => {
     Estetica: "",
     Pies: "",
   });
-  const precioArray = [];
   const [prec, setPrec] = useState([]);
 
   const handleChange = ({ target }) => {
@@ -43,7 +42,7 @@ const Inputs = ({ nombre }) => {
     const estetica = 0.5 * values.Estetica;
     const pies = 0.5 * values.Pies;
     const pushear = () => {
-      precioArray.push(
+      prec.push(
         corte,
         lavado,
         peinado,
@@ -60,16 +59,28 @@ const Inputs = ({ nombre }) => {
         pies
       );
     };
-    pushear()
-    const preciosSumados = precioArray.reduce(
+    pushear();
+
+    const preciosSumados = prec.reduce(
       (prev, current) => prev + current
     );
     const pasando = () => {
-      setPrec(preciosSumados);
+      setPrec([preciosSumados]);
     };
     pasando();
-    console.log(preciosSumados);
   };
+  console.log(prec)
+
+  
+  const guardado =[]
+  const guardar =() => {
+    guardado.push(prec, ...guardado)
+    console.log(guardado)
+  }
+  console.log(guardado)
+  
+
+
 
   return (
     <div className="bordes">
@@ -211,35 +222,12 @@ const Inputs = ({ nombre }) => {
       </div>
       <button onClick={cuenta}>Click</button>
       <p>Total:{prec}</p>
-      <p>Total:{precioArray}</p>
+      <button onClick={guardar}>Guardar</button>
+      {guardado.map((element) => (<p>{element}</p>))}
     </div>
   );
 };
 
-// const pushear = () => {
-//   precioArray.push(
-//     corte,
-//     lavado,
-//     peinado,
-//     color,
-//     decoloracion,
-//     nutricion,
-//     manos,
-//     alisado,
-//     depilacion,
-//     base,
-//     maquillaje,
-//     productos,
-//     estetica,
-//     pies
-//   );
-// };
-// pushear();
 
-// const preciosSumados = precioArray.reduce((prev, current) => prev + current);
-// const pasando = () => {
-//   setPrec(preciosSumados);
-// };
-// pasando();
 
 export default Inputs;
