@@ -6,7 +6,7 @@ import { Outlet } from "react-router-dom";
 
 const Container = () => {
   return (
-    <div className="general-container">
+    <div className="general-container1">
       <header>
         <Nav />
       </header>

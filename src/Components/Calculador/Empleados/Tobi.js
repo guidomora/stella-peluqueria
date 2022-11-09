@@ -1,17 +1,23 @@
-import React, { useState } from "react";
-import Inputs from "../Inputs"
+import React, { useContext, useState } from "react";
+import { InputContext } from "../Inputs";
 import "./Empleados-Style/Tobi.css";
+
 const Tobi = () => {
-  const [value, setValue] = useState([])
+  const prec = useContext(InputContext);
+
+  const allPrec = []
+  const savePrec = () => {
+    allPrec.push(prec)
+    console.log(allPrec)
+  };
+  console.log(allPrec)
+
   return (
-    <div className="bordes">
-      <Inputs 
-      nombre= "Tobi"
-      />
+    <div>
+      <button onClick={savePrec}>Guardar</button>
+      <p>{allPrec}</p>
     </div>
   );
-  
 };
 
 export default Tobi;
-

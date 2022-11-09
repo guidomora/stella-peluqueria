@@ -1,9 +1,6 @@
-import React, { createContext, useContext, useState } from "react";
-import Tobi from "./Empleados/Tobi";
+import React, { useState } from "react";
 
-export const InputContext = createContext()
 const Inputs = ({ nombre }) => {
-
   const [values, setValues] = useState({
     Corte: "",
     Lavado: "",
@@ -28,7 +25,6 @@ const Inputs = ({ nombre }) => {
       [target.name]: target.value,
     }));
   };
-
 
   const cuenta = () => {
     const corte = 0.35 * values.Corte;
@@ -213,9 +209,6 @@ const Inputs = ({ nombre }) => {
         </div>
         <button onClick={cuenta}>Click</button>
         <p>Total:{prec}</p>
-        <InputContext.Provider value={prec}>
-          <Tobi nombre={"tobi"}/>
-        </InputContext.Provider>
       </div>
   );
 };

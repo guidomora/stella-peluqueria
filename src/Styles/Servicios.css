@@ -1,0 +1,65 @@
+.titulo {
+    height: 140px;
+    font-size: 50px;
+    background-color: #eeee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 4px 9px 1px rgba(0, 0, 0, 0.2);
+}
+
+.list-container {
+    margin: 50px 0px 0px 0px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+
+.peluqueria {
+    width: 900px;
+    background-color: #eeee;
+    margin: 10px;
+    padding: 10px;
+
+}
+
+.productos {
+    height: 230px;
+    width: 400px;
+    background-color: #eeee;
+    margin: 10px;
+    padding: 10px;
+}
+
+.depilacion {
+    width: 900px;
+    background-color: #eeee;
+    margin: 10px;
+    padding: 10px;
+}
+
+.subtitulos {
+    font-size: 30px;
+    padding: 10px;
+    border-bottom: 4px solid black;
+    border-radius: 3px ;
+}
+.sub-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+}
+
+.division{
+    width: 400px;
+}
+
+.precios {
+    color: white;
+    font-size: 16px;
+}
+
+
