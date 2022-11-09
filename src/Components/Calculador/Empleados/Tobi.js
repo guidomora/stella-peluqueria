@@ -14,7 +14,7 @@ const Tobi = () => {
 
   return (
     <div>
-      <button onClick={savePrec}>Guardar</button>
+      <button onClick={savePrec} className="boton-precio">Guardar</button>
       <p>{allPrec}</p>
     </div>
   );

@@ -9,6 +9,10 @@ const Calculador = () => {
       <h2 className="title">Facturación</h2>
       <div className="input-container">
           <Inputs />
+          <Inputs />
+          <Inputs />
+          <Inputs />
+          <Inputs />
       </div>
     </div>
   );

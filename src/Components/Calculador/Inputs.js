@@ -211,7 +211,7 @@ const Inputs = ({ nombre }) => {
             onChange={handleChange}
           />
         </div>
-        <button onClick={cuenta}>Click</button>
+        <button onClick={cuenta} className="boton-precio">Click</button>
         <p>Total:{prec}</p>
         <InputContext.Provider value={prec}>
           <Tobi nombre={"tobi"}/>
