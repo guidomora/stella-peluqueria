@@ -1,20 +1,13 @@
 import React from "react";
-import "../Styles/Servicios.css";
-import Depilacion from "./Servicios/Depilacion";
-import Peluqueria from "./Servicios/Peluqueria";
-import Productos from "./Servicios/Productos";
+import ServiciosLista from "../Components/Servicios2/ServiciosLista"
+import "../Styles/Servicios.css"
 
-const Servicios = () => {
+const Servicios2 = () => {
   return (
     <div>
-      <h1 className="titulo">Servicios</h1>
-      <div className="list-container">
-        <Peluqueria />
-        <Productos />
-        <Depilacion />
-      </div>
+      <ServiciosLista categoria={"Peluqueria"} />
     </div>
   );
 };
 
-export default Servicios;
+export default Servicios2;

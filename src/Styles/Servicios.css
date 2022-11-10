@@ -6,60 +6,96 @@
     justify-content: center;
     align-items: center;
     box-shadow: 0px 4px 9px 1px rgba(0, 0, 0, 0.2);
-}
-
-.list-container {
+  }
+  
+  .list-container {
     margin: 50px 0px 0px 0px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-content: center;
-}
-
-
-.peluqueria {
-    width: 900px;
+  }
+  
+  .servicios-form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+  }
+  
+  .form-title {
+    font-size: 17px;
+    font-weight: bold;
+    margin: 5px;
+  }
+  
+  .input-form {
+    border-radius: 5px;
+    border: solid 1px black;
+    margin: 5px;
+  }
+  
+  .input-precio {
+    width: 80px;
+    border-radius: 5px;
+    border: solid 1px black;
+    margin: 5px;
+  }
+  
+  .boton-add {
+    width: 80px;
+    padding: 2px;
+    color: white;
+  }
+  
+  .peluqueria {
+    width: 500px;
     background-color: #eeee;
     margin: 10px;
     padding: 10px;
-
-}
-
-.productos {
+  }
+  
+  .productos {
     height: 230px;
     width: 400px;
     background-color: #eeee;
     margin: 10px;
     padding: 10px;
-}
-
-.depilacion {
+  }
+  
+  .depilacion {
     width: 900px;
     background-color: #eeee;
     margin: 10px;
     padding: 10px;
-}
-
-.subtitulos {
+  }
+  
+  .subtitulos {
     font-size: 30px;
     padding: 10px;
     border-bottom: 4px solid black;
-    border-radius: 3px ;
-}
-.sub-container{
+    border-radius: 3px;
+  }
+  .sub-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-
-}
-
-.division{
+  }
+  
+  .division {
     width: 400px;
-}
-
-.precios {
+  }
+  
+  .precios {
+    margin: 0px 5px;
     color: white;
     font-size: 16px;
-}
-
-
+  }
+  
+  .eliminar {
+      cursor: pointer;
+      margin: 0px 5px;
+      color: black;
+      font-size: 16px;
+    }
+  

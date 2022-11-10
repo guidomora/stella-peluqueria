@@ -9,7 +9,6 @@ const ServicioForm = (props) => {
       ...state,
       [e.target.name]: e.target.value,
     }));
-    console.log(inputs);
   };
 
   const handleDelivery = (e) => {
@@ -24,9 +23,11 @@ const ServicioForm = (props) => {
   };
 
   return (
-    <div>
+    <div className="servicios-form">
+      <p className="form-title">Agregar Servicio:</p>
       <form onSubmit={handleDelivery}>
         <input
+        className="input-form"
           type="text"
           name="servicio"
           placeholder="Escriba un servicio"
@@ -34,13 +35,14 @@ const ServicioForm = (props) => {
           onChange={handleChange}
         />
         <input
+        className="input-precio"
           type="number"
           name="precio"
           placeholder="Precio"
           value={inputs.precio}
           onChange={handleChange}
         />
-        <button>Agregar</button>
+        <button className="bg-success rounded-pill boton-add">Agregar</button>
       </form>
     </div>
   );
