@@ -6,6 +6,7 @@ import Turnos from "./Components/Turnos";
 import Validacion from "./Components/Validacion";
 import Calculador from "./Components/Calculador/Calculador";
 import Servicios from "./Components/Servicios";
+import Servicios2 from "./Components/Servicios2/Servicios2";
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Container />}>
         <Route path="/servicios" element={<Servicios />} />
+        <Route path="/servicios2" element={<Servicios2 />} />
         <Route path="/turnos" element={<Turnos />} />
         <Route path="/validacion" element={<Validacion />} />
         <Route path="/calculador" element={<Calculador />} />
