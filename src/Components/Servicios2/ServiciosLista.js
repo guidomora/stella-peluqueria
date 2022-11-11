@@ -8,7 +8,9 @@ import {
   collection,
   onSnapshot,
   query,
-  deleteDoc
+  deleteDoc,
+  deleteField,
+  updateDoc
 } from "firebase/firestore";
 import { async } from "@firebase/util";
 
@@ -28,11 +30,11 @@ const ServiciosLista = ({ categoria }) => {
   const obtenerServicios = async () => {
     const q = query(collection(db, "Servicios"));
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      const docs = []
+      const docs = [];
       querySnapshot.forEach((doc) => {
-        docs.push({...doc.data()});
+        docs.push({ ...doc.data() });
       });
-      setServices(docs)
+      setServices(docs);
       console.log(services);
     });
   };
@@ -44,6 +46,12 @@ const ServiciosLista = ({ categoria }) => {
   const borrarServicio = async (id) => {
     const updatedServices = services.filter((service) => service.id !== id);
     setServices(updatedServices);
+
+    const borrarFirestore = async (id) => {
+      await deleteDoc(doc(db, "Servicios", id));
+    };
+
+    borrarFirestore();
   };
 
   return (
