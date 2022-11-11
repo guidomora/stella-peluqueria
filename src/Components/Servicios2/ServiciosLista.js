@@ -1,12 +1,18 @@
-
 import { db } from "../Firebase";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ServicioForm from "./ServicioForm";
 import ServicioSolo from "./ServicioSolo";
-import { doc, setDoc, } from "firebase/firestore"; 
+import {
+  doc,
+  setDoc,
+  collection,
+  onSnapshot,
+  query,
+  deleteDoc
+} from "firebase/firestore";
+import { async } from "@firebase/util";
 
-
-const ServiciosLista = ({categoria}) => {
+const ServiciosLista = ({ categoria }) => {
   const [services, setServices] = useState([]);
 
   const agregarServicio = async (service) => {
@@ -15,13 +21,27 @@ const ServiciosLista = ({categoria}) => {
 
     await setDoc(doc(db, "Servicios", service.id), {
       servicio: service.servicio,
-      precio: service.precio
+      precio: service.precio,
     });
   };
 
-  console.log(services)
+  const obtenerServicios = async () => {
+    const q = query(collection(db, "Servicios"));
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      const docs = []
+      querySnapshot.forEach((doc) => {
+        docs.push({...doc.data()});
+      });
+      setServices(docs)
+      console.log(services);
+    });
+  };
 
-  const borrarServicio = (id) => {
+  useEffect(() => {
+    obtenerServicios();
+  }, []);
+
+  const borrarServicio = async (id) => {
     const updatedServices = services.filter((service) => service.id !== id);
     setServices(updatedServices);
   };
