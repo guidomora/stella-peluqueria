@@ -1,6 +1,6 @@
 import React from "react";
 
-const ServicioSolo = ({ texto, precio, id, borrarServicio }) => {
+const ServicioSolo = ({ texto, precio, service, id, borrarServicio }) => {
   return (
     <div>
       <ol className=" list-group">

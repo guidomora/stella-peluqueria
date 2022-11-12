@@ -9,10 +9,7 @@ import {
   onSnapshot,
   query,
   deleteDoc,
-  deleteField,
-  updateDoc
 } from "firebase/firestore";
-import { async } from "@firebase/util";
 
 const ServiciosLista = ({ categoria }) => {
   const [services, setServices] = useState([]);
@@ -24,6 +21,7 @@ const ServiciosLista = ({ categoria }) => {
     await setDoc(doc(db, "Servicios", service.id), {
       servicio: service.servicio,
       precio: service.precio,
+      id: service.id
     });
   };
 
@@ -47,12 +45,14 @@ const ServiciosLista = ({ categoria }) => {
     const updatedServices = services.filter((service) => service.id !== id);
     setServices(updatedServices);
 
-    const borrarFirestore = async (id) => {
+    const borrarFirestore = async () => {
       await deleteDoc(doc(db, "Servicios", id));
     };
 
     borrarFirestore();
   };
+
+  console.log(services)
 
   return (
     <div className="peluqueria">

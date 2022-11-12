@@ -1,9 +1,7 @@
 import "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import {
-  collection,
   getFirestore,
-  addDoc,
 } from "firebase/firestore";
 
 // Your web app's Firebase configuration
