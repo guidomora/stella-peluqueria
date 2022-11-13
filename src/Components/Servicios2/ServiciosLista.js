@@ -13,6 +13,7 @@ import {
 
 const ServiciosLista = ({ categoria }) => {
   const [services, setServices] = useState([]);
+  const [edit, setEdit] = useState("")
 
   const agregarServicio = async (service) => {
     const updatedServices = [service, ...services];
@@ -51,6 +52,10 @@ const ServiciosLista = ({ categoria }) => {
 
     borrarFirestore();
   };
+
+  const editarServicio = () => {
+
+  }
 
   console.log(services)
 

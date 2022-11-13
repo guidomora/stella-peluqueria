@@ -1,6 +1,6 @@
 import React from "react";
 
-const ServicioSolo = ({ texto, precio, service, id, borrarServicio }) => {
+const ServicioSolo = ({ texto, precio, id, borrarServicio, editarServicio }) => {
   return (
     <div>
       <ol className=" list-group">
@@ -14,6 +14,12 @@ const ServicioSolo = ({ texto, precio, service, id, borrarServicio }) => {
             onClick={() => borrarServicio(id)}
           >
             Eliminar
+          </span>
+          <span
+            className="badge bg-warning rounded-pill eliminar "
+            onClick={() => editarServicio(id)}
+          >
+            Editar
           </span>
         </li>
       </ol>

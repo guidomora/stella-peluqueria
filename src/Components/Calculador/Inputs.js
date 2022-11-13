@@ -1,9 +1,18 @@
 import React, { createContext, useContext, useState } from "react";
 import Tobi from "./Empleados/Tobi";
+import {
+  doc,
+  setDoc,
+  collection,
+  onSnapshot,
+  query,
+  deleteDoc,
+} from "firebase/firestore";
+import { db } from "../Firebase";
+import { async } from "@firebase/util";
 
-export const InputContext = createContext()
+export const InputContext = createContext();
 const Inputs = ({ nombre }) => {
-
   const [values, setValues] = useState({
     Corte: "",
     Lavado: "",
@@ -28,7 +37,6 @@ const Inputs = ({ nombre }) => {
       [target.name]: target.value,
     }));
   };
-
 
   const cuenta = () => {
     const corte = 0.35 * values.Corte;
@@ -70,153 +78,162 @@ const Inputs = ({ nombre }) => {
       setPrec([preciosSumados]);
     };
     pasando();
+
+    const subida = async (dia) => {
+      await setDoc(doc(db, "Tobi", dia), {
+        dia: prec
+      });
+    };
+    subida()
   };
   console.log(prec);
 
   return (
-      <div className="bordes">
-        <div className="empleado-container">
-          <p className="texto">Corte</p>
-          <p className="texto">Lavado</p>
-          <p className="texto">Peinado</p>
-          <p className="texto">Color</p>
-          <p className="texto">Decoloración</p>
-          <p className="texto">Nutrición</p>
-          <p className="texto">Manos</p>
-        </div>
-        <div className="input-container">
-          <p>{nombre}</p>
-          <input
-            className="inputs"
-            type="number"
-            name="Corte"
-            value={values.Corte}
-            placeholder="35%"
-            onChange={handleChange}
-          />
-          <input
-            className="inputs"
-            type="number"
-            name="Lavado"
-            value={values.Lavado}
-            placeholder="35%"
-            onChange={handleChange}
-          />
-          <input
-            className="inputs"
-            type="number"
-            name="Peinado"
-            value={values.Peinado}
-            placeholder="35%"
-            onChange={handleChange}
-          />
-          <input
-            className="inputs"
-            type="number"
-            name="Color"
-            value={values.Color}
-            placeholder="25%"
-            onChange={handleChange}
-          />
-          <input
-            className="inputs"
-            type="number"
-            name="Decoloracion"
-            value={values.Decoloracion}
-            placeholder="25%"
-            onChange={handleChange}
-          />
-          <input
-            className="inputs"
-            type="number"
-            name="Nutricion"
-            value={values.Nutricion}
-            placeholder="35%"
-            onChange={handleChange}
-          />
-          <input
-            className="inputs"
-            type="number"
-            name="Manos"
-            value={values.Manos}
-            placeholder="50%"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="empleado-container">
-          <p className="texto">Alisado</p>
-          <p className="texto">Depilación</p>
-          <p className="texto">Base Rulos</p>
-          <p className="texto">Maquillaje</p>
-          <p className="texto">Productos</p>
-          <p className="texto">Estética Rostro</p>
-          <p className="texto">Pies</p>
-        </div>
-        <div className="input-container">
-          <p>{nombre}</p>
-          <input
-            className="inputs"
-            type="number"
-            name="Alisado"
-            value={values.Alisado}
-            placeholder="25%"
-            onChange={handleChange}
-          />
-          <input
-            className="inputs"
-            type="number"
-            name="Depilacion"
-            value={values.Depilacion}
-            placeholder="50%"
-            onChange={handleChange}
-          />
-          <input
-            className="inputs"
-            type="number"
-            name="Base"
-            value={values.Base}
-            placeholder="50%"
-            onChange={handleChange}
-          />
-          <input
-            className="inputs"
-            type="number"
-            name="Maquillaje"
-            value={values.Maquillaje}
-            placeholder="50%"
-            onChange={handleChange}
-          />
-          <input
-            className="inputs"
-            type="number"
-            name="Productos"
-            value={values.Productos}
-            placeholder="25%"
-            onChange={handleChange}
-          />
-          <input
-            className="inputs"
-            type="number"
-            name="Estetica"
-            value={values.Estetica}
-            placeholder="50%"
-            onChange={handleChange}
-          />
-          <input
-            className="inputs"
-            type="number"
-            name="Pies"
-            value={values.Pies}
-            placeholder="50%"
-            onChange={handleChange}
-          />
-        </div>
-        <button onClick={cuenta} className="boton-precio">Click</button>
-        <p>Total:{prec}</p>
-        <InputContext.Provider value={prec}>
-          <Tobi nombre={"tobi"}/>
-        </InputContext.Provider>
+    <div className="bordes">
+      <div className="empleado-container">
+        <p className="texto">Corte</p>
+        <p className="texto">Lavado</p>
+        <p className="texto">Peinado</p>
+        <p className="texto">Color</p>
+        <p className="texto">Decoloración</p>
+        <p className="texto">Nutrición</p>
+        <p className="texto">Manos</p>
       </div>
+      <div className="input-container">
+        <p>{nombre}</p>
+        <input
+          className="inputs"
+          type="number"
+          name="Corte"
+          value={values.Corte}
+          placeholder="35%"
+          onChange={handleChange}
+        />
+        <input
+          className="inputs"
+          type="number"
+          name="Lavado"
+          value={values.Lavado}
+          placeholder="35%"
+          onChange={handleChange}
+        />
+        <input
+          className="inputs"
+          type="number"
+          name="Peinado"
+          value={values.Peinado}
+          placeholder="35%"
+          onChange={handleChange}
+        />
+        <input
+          className="inputs"
+          type="number"
+          name="Color"
+          value={values.Color}
+          placeholder="25%"
+          onChange={handleChange}
+        />
+        <input
+          className="inputs"
+          type="number"
+          name="Decoloracion"
+          value={values.Decoloracion}
+          placeholder="25%"
+          onChange={handleChange}
+        />
+        <input
+          className="inputs"
+          type="number"
+          name="Nutricion"
+          value={values.Nutricion}
+          placeholder="35%"
+          onChange={handleChange}
+        />
+        <input
+          className="inputs"
+          type="number"
+          name="Manos"
+          value={values.Manos}
+          placeholder="50%"
+          onChange={handleChange}
+        />
+      </div>
+      <div className="empleado-container">
+        <p className="texto">Alisado</p>
+        <p className="texto">Depilación</p>
+        <p className="texto">Base Rulos</p>
+        <p className="texto">Maquillaje</p>
+        <p className="texto">Productos</p>
+        <p className="texto">Estética Rostro</p>
+        <p className="texto">Pies</p>
+      </div>
+      <div className="input-container">
+        <p>{nombre}</p>
+        <input
+          className="inputs"
+          type="number"
+          name="Alisado"
+          value={values.Alisado}
+          placeholder="25%"
+          onChange={handleChange}
+        />
+        <input
+          className="inputs"
+          type="number"
+          name="Depilacion"
+          value={values.Depilacion}
+          placeholder="50%"
+          onChange={handleChange}
+        />
+        <input
+          className="inputs"
+          type="number"
+          name="Base"
+          value={values.Base}
+          placeholder="50%"
+          onChange={handleChange}
+        />
+        <input
+          className="inputs"
+          type="number"
+          name="Maquillaje"
+          value={values.Maquillaje}
+          placeholder="50%"
+          onChange={handleChange}
+        />
+        <input
+          className="inputs"
+          type="number"
+          name="Productos"
+          value={values.Productos}
+          placeholder="25%"
+          onChange={handleChange}
+        />
+        <input
+          className="inputs"
+          type="number"
+          name="Estetica"
+          value={values.Estetica}
+          placeholder="50%"
+          onChange={handleChange}
+        />
+        <input
+          className="inputs"
+          type="number"
+          name="Pies"
+          value={values.Pies}
+          placeholder="50%"
+          onChange={handleChange}
+        />
+      </div>
+      <button onClick={cuenta} className="boton-precio">
+        Click
+      </button>
+      <p>Total:{prec}</p>
+      <InputContext.Provider value={prec}>
+        <Tobi nombre={"tobi"} />
+      </InputContext.Provider>
+    </div>
   );
 };
 
