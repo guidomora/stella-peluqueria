@@ -8,7 +8,8 @@ const Calculador = () => {
     <div className="general-container2">
       <h2 className="title">Facturación</h2>
       <div className="input-container">
-          <Inputs />
+          <Inputs 
+          nombre={"Tobi"}/>
           <Inputs />
           <Inputs />
           <Inputs />

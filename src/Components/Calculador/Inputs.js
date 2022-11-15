@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState } from "react";
 import Tobi from "./Empleados/Tobi";
 import {
   doc,
+  addDoc,
   setDoc,
   collection,
   onSnapshot,
@@ -9,7 +10,7 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 import { db } from "../Firebase";
-import { async } from "@firebase/util";
+
 
 export const InputContext = createContext();
 const Inputs = ({ nombre }) => {
@@ -30,6 +31,7 @@ const Inputs = ({ nombre }) => {
     Pies: "",
   });
   const [prec, setPrec] = useState([]);
+  const [finalPrec, setFinalPrec] =useState("")
 
   const handleChange = ({ target }) => {
     setValues((state) => ({
@@ -37,6 +39,7 @@ const Inputs = ({ nombre }) => {
       [target.name]: target.value,
     }));
   };
+
 
   const cuenta = () => {
     const corte = 0.35 * values.Corte;
@@ -68,23 +71,26 @@ const Inputs = ({ nombre }) => {
         maquillaje,
         productos,
         estetica,
-        pies
+        pies,
       );
     };
     pushear();
+    
 
     const preciosSumados = prec.reduce((prev, current) => prev + current);
     const pasando = () => {
       setPrec([preciosSumados]);
+      setFinalPrec(prec)
     };
     pasando();
 
-    const subida = async (dia) => {
-      await setDoc(doc(db, "Tobi", dia), {
-        dia: prec
+    const subida = async () => {
+      await addDoc(collection(db, "Tobi"), {
+        dia: prec.reduce((prev, current) => prev + current)
       });
     };
     subida()
+    
   };
   console.log(prec);
 
@@ -231,7 +237,7 @@ const Inputs = ({ nombre }) => {
       </button>
       <p>Total:{prec}</p>
       <InputContext.Provider value={prec}>
-        <Tobi nombre={"tobi"} />
+        <Tobi />
       </InputContext.Provider>
     </div>
   );
