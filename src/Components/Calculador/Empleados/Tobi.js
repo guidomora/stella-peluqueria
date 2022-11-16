@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { InputContext } from "../Inputs";
-// import "./Empleados-Style/Tobi.css";
+import "./Empleados-Style/Tobi.css";
 import {
   doc,
   addDoc,
@@ -8,6 +8,7 @@ import {
   collection,
   onSnapshot,
   query,
+  getDocs,
   deleteDoc,
 } from "firebase/firestore";
 import { db } from "./Firebase";
@@ -15,37 +16,39 @@ import { keyboard } from "@testing-library/user-event/dist/keyboard";
 import { uuidv4 } from "@firebase/util";
 
 const Tobi = () => {
-  // const prec = useContext(InputContext);
-  // const [dia, setDia] = useState([]);
+  const prec = useContext(InputContext);
+  const [dia, setDia] = useState([]);
+  const [id, setId] = useState([])
 
-  // const obtenerServicios = async () => {
-  //   const q = query(collection(db, "Tobi"));
-  //   const unsubscribe = onSnapshot(q, (querySnapshot) => {
-  //     const docs = [];
-  //     querySnapshot.forEach((doc) => {
-  //       docs.push({ ...doc.data() });
-  //     });
-  //     setDia(docs);
-  //   });
-  // };
+  const obtenerServicios = async () => {
+    const q = query(collection(db, "Tobi"));
+    const querySnapshot = await getDocs(q);
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      const docs = [];
+      querySnapshot.forEach((doc) => {
+        console.log(doc.id, doc.data());
+        docs.push( doc.data());
+        setId(doc.id);
+      });
+      setDia(docs);
+    });
 
-  // useEffect(() => {
-  //   obtenerServicios();
+  };
 
-  //   console.log(dia)
-  // }, []);
+  useEffect(() => {
+    obtenerServicios();
+  }, []);
 
-  // const borrarServicio = async () => {
-  //   const borrarFirestore = async (dia) => {
-  //     await deleteDoc(doc(db, "Tobi"));
-  //   };
-  //   borrarFirestore();
-  // };
-
+  const borrarServicio = async () => {
+    const borrarFirestore = async () => {
+      await deleteDoc(doc(db, "Tobi", id))
+    };
+    borrarFirestore();
+  };
 
   return (
     <div>
-      {/* <button className="boton-precio">Guardar</button>
+      <button className="boton-precio">Guardar</button>
       <ul>
         {dia.map((x) => (
           <li key={uuidv4()}>
@@ -53,7 +56,7 @@ const Tobi = () => {
             <button onClick={() => borrarServicio()}>Eliminar</button>
           </li>
         ))}
-      </ul> */}
+      </ul>
     </div>
   );
 };

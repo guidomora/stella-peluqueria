@@ -41,8 +41,6 @@ const Inputs = ({ nombre }) => {
       [target.name]: target.value,
     }));
   };
-
-  const id = uuidv4();
   const cuenta = () => {
     const corte = 0.35 * values.Corte;
     const lavado = 0.35 * values.Lavado;
@@ -85,42 +83,40 @@ const Inputs = ({ nombre }) => {
     pasando();
 
     const subida = async (id) => {
-      await setDoc(doc(db, "Tobi", uuidv4()), {
+      const docRef = await addDoc(collection(db, "Tobi"), {
         dia: prec.reduce((prev, current) => prev + current),
-        id: uuidv4()
       });
+      console.log(docRef, docRef.id)
     };
     subida();
   };
 
-  
-  
+  //--------------------------------------------
+  // const obtenerServicios = async () => {
+  //   const q = query(collection(db, "Tobi"));
+  //   const unsubscribe = onSnapshot(q, (querySnapshot) => {
+  //     const docs = [];
+  //     querySnapshot.forEach((doc) => {
+  //       docs.push({ ...doc.data(), id: doc.id });
+  //     });
+  //     setPrec(docs);
+  //   });
+  // };
 
-  // --------------------------------------------
-  const obtenerServicios = async () => {
-    const q = query(collection(db, "Tobi"));
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      const docs = [];
-      querySnapshot.forEach((doc) => {
-        docs.push({ ...doc.data() });
-      });
-      setDia(docs);
-    });
-  };
+  // useEffect(() => {
+  //   obtenerServicios();
+  // }, []);
 
-  useEffect(() => {
-    obtenerServicios();
-  }, []);
+  // console.log(prec)
 
-  console.log(dia);
-  // ----------------------------------------------
+  // // ----------------------------------------------
 
-  const borrarServicio = async (id) => {
-    const borrarFirestore = async () => {
-      await deleteDoc(doc(db, "Tobi", id));
-    };
-    borrarFirestore();
-  };
+  // const borrarServicio = async () => {
+  //   const borrarFirestore = async (id) => {
+  //     await deleteDoc(doc(db, "Tobi", id));
+  //   };
+  //   borrarFirestore();
+  // };
 
   return (
     <div className="bordes">
@@ -264,17 +260,17 @@ const Inputs = ({ nombre }) => {
         Click
       </button>
       <p>Total:{prec.dia}</p>
-      <ul>
-        {dia.map((x) => (
+      {/* <ul>
+        {prec.map((x) => (
           <li>
             {x.dia}
             <button onClick={() => borrarServicio()}>Eliminar</button>
           </li>
         ))}
-      </ul>
-      {/* <InputContext.Provider value={prec}>
+      </ul> */}
+      <InputContext.Provider value={prec}>
         <Tobi />
-      </InputContext.Provider> */}
+      </InputContext.Provider>
     </div>
   );
 };
