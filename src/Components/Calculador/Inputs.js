@@ -1,5 +1,6 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 import Tobi from "./Empleados/Tobi";
+import "./Empleados/Empleados-Style/Tobi.css";
 import {
   doc,
   addDoc,
@@ -8,9 +9,10 @@ import {
   onSnapshot,
   query,
   deleteDoc,
+  where,
 } from "firebase/firestore";
 import { db } from "../Firebase";
-
+import { uuidv4 } from "@firebase/util";
 
 export const InputContext = createContext();
 const Inputs = ({ nombre }) => {
@@ -31,7 +33,7 @@ const Inputs = ({ nombre }) => {
     Pies: "",
   });
   const [prec, setPrec] = useState([]);
-  const [finalPrec, setFinalPrec] =useState("")
+  const [dia, setDia] = useState([]);
 
   const handleChange = ({ target }) => {
     setValues((state) => ({
@@ -40,7 +42,7 @@ const Inputs = ({ nombre }) => {
     }));
   };
 
-
+  const id = uuidv4();
   const cuenta = () => {
     const corte = 0.35 * values.Corte;
     const lavado = 0.35 * values.Lavado;
@@ -71,28 +73,54 @@ const Inputs = ({ nombre }) => {
         maquillaje,
         productos,
         estetica,
-        pies,
+        pies
       );
     };
     pushear();
-    
 
     const preciosSumados = prec.reduce((prev, current) => prev + current);
     const pasando = () => {
       setPrec([preciosSumados]);
-      setFinalPrec(prec)
     };
     pasando();
 
-    const subida = async () => {
-      await addDoc(collection(db, "Tobi"), {
-        dia: prec.reduce((prev, current) => prev + current)
+    const subida = async (id) => {
+      await setDoc(doc(db, "Tobi", uuidv4()), {
+        dia: prec.reduce((prev, current) => prev + current),
+        id: uuidv4()
       });
     };
-    subida()
-    
+    subida();
   };
-  console.log(prec);
+
+  
+  
+
+  // --------------------------------------------
+  const obtenerServicios = async () => {
+    const q = query(collection(db, "Tobi"));
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      const docs = [];
+      querySnapshot.forEach((doc) => {
+        docs.push({ ...doc.data() });
+      });
+      setDia(docs);
+    });
+  };
+
+  useEffect(() => {
+    obtenerServicios();
+  }, []);
+
+  console.log(dia);
+  // ----------------------------------------------
+
+  const borrarServicio = async (id) => {
+    const borrarFirestore = async () => {
+      await deleteDoc(doc(db, "Tobi", id));
+    };
+    borrarFirestore();
+  };
 
   return (
     <div className="bordes">
@@ -235,10 +263,18 @@ const Inputs = ({ nombre }) => {
       <button onClick={cuenta} className="boton-precio">
         Click
       </button>
-      <p>Total:{prec}</p>
-      <InputContext.Provider value={prec}>
+      <p>Total:{prec.dia}</p>
+      <ul>
+        {dia.map((x) => (
+          <li>
+            {x.dia}
+            <button onClick={() => borrarServicio()}>Eliminar</button>
+          </li>
+        ))}
+      </ul>
+      {/* <InputContext.Provider value={prec}>
         <Tobi />
-      </InputContext.Provider>
+      </InputContext.Provider> */}
     </div>
   );
 };
