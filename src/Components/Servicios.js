@@ -4,8 +4,11 @@ import "../Styles/Servicios.css"
 
 const Servicios2 = () => {
   return (
-    <div>
-      <ServiciosLista categoria={"Peluqueria"} />
+    <div className="serv-container">
+      <ServiciosLista coleccion={"Peluqueria"} categoria={"Peluqueria"} />
+      <ServiciosLista coleccion={"Productos"} categoria={"Productos"} />
+      <ServiciosLista coleccion={"Manos"} categoria={"Manos"} />
+      <ServiciosLista coleccion={"Depilacion"} categoria={"Depilacion"} />
     </div>
   );
 };

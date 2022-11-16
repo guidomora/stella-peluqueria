@@ -91,33 +91,6 @@ const Inputs = ({ nombre }) => {
     subida();
   };
 
-  //--------------------------------------------
-  // const obtenerServicios = async () => {
-  //   const q = query(collection(db, "Tobi"));
-  //   const unsubscribe = onSnapshot(q, (querySnapshot) => {
-  //     const docs = [];
-  //     querySnapshot.forEach((doc) => {
-  //       docs.push({ ...doc.data(), id: doc.id });
-  //     });
-  //     setPrec(docs);
-  //   });
-  // };
-
-  // useEffect(() => {
-  //   obtenerServicios();
-  // }, []);
-
-  // console.log(prec)
-
-  // // ----------------------------------------------
-
-  // const borrarServicio = async () => {
-  //   const borrarFirestore = async (id) => {
-  //     await deleteDoc(doc(db, "Tobi", id));
-  //   };
-  //   borrarFirestore();
-  // };
-
   return (
     <div className="bordes">
       <div className="empleado-container">
@@ -256,18 +229,10 @@ const Inputs = ({ nombre }) => {
           onChange={handleChange}
         />
       </div>
-      <button onClick={cuenta} className="boton-precio">
+      <button onClick={cuenta} className="badge bg-success rounded-pill boton-precio">
         Click
       </button>
-      <p>Total:{prec.dia}</p>
-      {/* <ul>
-        {prec.map((x) => (
-          <li>
-            {x.dia}
-            <button onClick={() => borrarServicio()}>Eliminar</button>
-          </li>
-        ))}
-      </ul> */}
+      <p>Total: ${prec}</p>
       <InputContext.Provider value={prec}>
         <Tobi />
       </InputContext.Provider>

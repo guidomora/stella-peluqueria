@@ -11,15 +11,16 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 
-const ServiciosLista = ({ categoria }) => {
+const ServiciosLista = ({categoria, coleccion}) => {
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
+
 
   const agregarServicio = async (service) => {
     const updatedServices = [service, ...services];
     setServices(updatedServices);
 
-    await setDoc(doc(db, "Servicios", service.id), {
+    await setDoc(doc(db, `${coleccion}`, service.id), {
       servicio: service.servicio,
       precio: "$" + service.precio,
       id: service.id,
@@ -29,7 +30,7 @@ const ServiciosLista = ({ categoria }) => {
   };
 
   const obtenerServicios = async () => {
-    const q = query(collection(db, "Servicios"));
+    const q = query(collection(db, `${coleccion}`));
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const docs = [];
       querySnapshot.forEach((doc) => {
@@ -50,7 +51,7 @@ const ServiciosLista = ({ categoria }) => {
     setServices(updatedServices);
 
     const borrarFirestore = async () => {
-      await deleteDoc(doc(db, "Servicios", id));
+      await deleteDoc(doc(db, `${coleccion}`, id));
     };
 
     borrarFirestore();

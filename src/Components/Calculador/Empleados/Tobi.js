@@ -48,12 +48,11 @@ const Tobi = () => {
 
   return (
     <div>
-      <button className="boton-precio">Guardar</button>
       <ul>
         {dia.map((x) => (
           <li key={uuidv4()}>
-            {x.dia}
-            <button onClick={() => borrarServicio()}>Eliminar</button>
+            ${x.dia}
+            <button onClick={() => borrarServicio()} className="badge bg-danger rounded-pill boton-eliminar">Eliminar</button>
           </li>
         ))}
       </ul>
