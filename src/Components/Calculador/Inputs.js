@@ -1,21 +1,19 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-import Tobi from "./Empleados/Tobi";
 import "./Empleados/Empleados-Style/Tobi.css";
 import {
   doc,
   addDoc,
-  setDoc,
   collection,
   onSnapshot,
   query,
+  getDocs,
   deleteDoc,
-  where,
 } from "firebase/firestore";
 import { db } from "../Firebase";
 import { uuidv4 } from "@firebase/util";
 
 export const InputContext = createContext();
-const Inputs = ({ nombre }) => {
+const Inputs = ({ nombre, coleccion }) => {
   const [values, setValues] = useState({
     Corte: "",
     Lavado: "",
@@ -34,6 +32,8 @@ const Inputs = ({ nombre }) => {
   });
   const [prec, setPrec] = useState([]);
   const [dia, setDia] = useState([]);
+  const [id, setId] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const handleChange = ({ target }) => {
     setValues((state) => ({
@@ -83,12 +83,36 @@ const Inputs = ({ nombre }) => {
     pasando();
 
     const subida = async (id) => {
-      const docRef = await addDoc(collection(db, "Tobi"), {
+      const docRef = await addDoc(collection(db, `${coleccion}`), {
         dia: prec.reduce((prev, current) => prev + current),
       });
-      console.log(docRef, docRef.id)
     };
     subida();
+  };
+
+  const obtenerServicios = async () => {
+    const q = query(collection(db, `${coleccion}`));
+    const querySnapshot = await getDocs(q);
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      const docs = [];
+      querySnapshot.forEach((doc) => {
+        docs.push(doc.data());
+        setId(doc.id);
+      });
+      setDia(docs);
+    });
+  };
+
+  useEffect(() => {
+    obtenerServicios();
+    setTimeout(setLoading, 1000, false);
+  }, []);
+
+  const borrarServicio = async () => {
+    const borrarFirestore = async () => {
+      await deleteDoc(doc(db, `${coleccion}`, id));
+    };
+    borrarFirestore();
   };
 
   return (
@@ -229,13 +253,31 @@ const Inputs = ({ nombre }) => {
           onChange={handleChange}
         />
       </div>
-      <button onClick={cuenta} className="badge bg-success rounded-pill boton-precio">
+      <button
+        onClick={cuenta}
+        className="badge bg-success rounded-pill boton-precio"
+      >
         Click
       </button>
       <p>Total: ${prec}</p>
-      <InputContext.Provider value={prec}>
-        <Tobi />
-      </InputContext.Provider>
+      <ul className="lista-dias">
+      {loading ? (
+          <div className="spinner-grow" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+        ) : (
+        dia.map((x) => (
+          <li key={uuidv4()}>
+            ${x.dia}
+            <button
+              onClick={() => borrarServicio()}
+              className="badge bg-danger rounded-pill boton-eliminar"
+            >
+              Eliminar
+            </button>
+          </li>
+        )))}
+      </ul>
     </div>
   );
 };

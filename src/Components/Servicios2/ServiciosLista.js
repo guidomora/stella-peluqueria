@@ -11,10 +11,10 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 
+
 const ServiciosLista = ({categoria, coleccion}) => {
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
-
 
   const agregarServicio = async (service) => {
     const updatedServices = [service, ...services];
@@ -25,8 +25,6 @@ const ServiciosLista = ({categoria, coleccion}) => {
       precio: "$" + service.precio,
       id: service.id,
     });
-
-    console.log(service);
   };
 
   const obtenerServicios = async () => {
@@ -37,7 +35,6 @@ const ServiciosLista = ({categoria, coleccion}) => {
         docs.push({ ...doc.data() });
       });
       setServices(docs);
-      console.log(services);
     });
   };
 
@@ -58,8 +55,6 @@ const ServiciosLista = ({categoria, coleccion}) => {
   };
 
   const editarServicio = () => {};
-
-  console.log(services);
 
   return (
     <div className="peluqueria">
