@@ -7,7 +7,6 @@ import Validacion from "./Components/Validacion";
 import Calculador from "./Components/Calculador/Calculador";
 import Servicios from "./Components/Servicios";
 
-
 function App() {
   return (
     <Routes>
@@ -17,7 +16,9 @@ function App() {
         <Route path="/validacion" element={<Validacion />} />
         <Route path="/calculador" element={<Calculador />} />
       </Route>
+      
     </Routes>
+    
   );
 }
 
