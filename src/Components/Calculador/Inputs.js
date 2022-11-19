@@ -34,6 +34,7 @@ const Inputs = ({ nombre, coleccion }) => {
   const [dia, setDia] = useState([]);
   const [id, setId] = useState([]);
   const [loading, setLoading] = useState(true);
+  const iterator = dia.keys();
 
   const handleChange = ({ target }) => {
     setValues((state) => ({
@@ -101,6 +102,7 @@ const Inputs = ({ nombre, coleccion }) => {
       });
       setDia(docs);
     });
+
   };
 
   useEffect(() => {
@@ -114,9 +116,9 @@ const Inputs = ({ nombre, coleccion }) => {
     };
     borrarFirestore();
   };
-
   return (
     <div className="bordes">
+      <h1 className="titulo-nombre">{nombre}</h1>
       <div className="empleado-container">
         <p className="texto">Corte</p>
         <p className="texto">Lavado</p>
@@ -261,22 +263,23 @@ const Inputs = ({ nombre, coleccion }) => {
       </button>
       <p>Total: ${prec}</p>
       <ul className="lista-dias">
-      {loading ? (
+        {loading ? (
           <div className="spinner-grow" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </div>
+            <span className="visually-hidden">Loading...</span>
+          </div>
         ) : (
-        dia.map((x) => (
-          <li key={uuidv4()}>
-            ${x.dia}
-            <button
-              onClick={() => borrarServicio()}
-              className="badge bg-danger rounded-pill boton-eliminar"
-            >
-              Eliminar
-            </button>
-          </li>
-        )))}
+          dia.map((x) => (
+            <li key={uuidv4()}>
+              ${x.dia}
+              <button
+                onClick={() => borrarServicio()}
+                className="badge bg-danger rounded-pill boton-eliminar"
+              >
+                Eliminar
+              </button>
+            </li>
+          ))
+        )}
       </ul>
     </div>
   );

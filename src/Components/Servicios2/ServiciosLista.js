@@ -59,7 +59,7 @@ const ServiciosLista = ({categoria, coleccion}) => {
   return (
     <div className="peluqueria">
       <h2 className="subtitulos">{categoria}</h2>
-      <ServicioForm onSubmit={agregarServicio} />
+      <ServicioForm  onSubmit={agregarServicio}/>
       <div>
         {" "}
         {loading ? (

@@ -3,6 +3,10 @@
   border: solid 1px black;
   border-radius: 5px;
 }
+.titulo-nombre {
+  text-align: center;
+  font-weight: bold;
+}
 
 .empleado-container {
   background-color: #457b9d;
@@ -44,6 +48,13 @@
 }
 
 .lista-dias {
+  margin: 5px;
+  padding: 0px;
+  width: 900px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   font-size: 18px;
   list-style: none;
 }
+

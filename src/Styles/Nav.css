@@ -31,6 +31,10 @@
     transition: background-color .3s;
 }
 
+a {
+    color: rgb(43, 40, 40);
+}
+
 .lista-buttons:hover {
     background-color: rgb(148, 144, 144);
 }
