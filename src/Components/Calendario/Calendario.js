@@ -9,6 +9,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import TimePicker from "react-time-picker";
 import { v4 as uuidv4 } from "uuid";
+import "./Calendario.css"
 
 const eventos = [];
 const Calendario = () => {
