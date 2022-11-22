@@ -1,9 +1,10 @@
 import React from "react";
+import Calendario from "./Calendario/Calendario";
 
 const Turnos = () => {
   return (
     <div>
-        Turnos
+       <Calendario />
     </div>
   );
 };

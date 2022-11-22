@@ -34,7 +34,6 @@ const Inputs = ({ nombre, coleccion }) => {
   const [dia, setDia] = useState([]);
   const [id, setId] = useState([]);
   const [loading, setLoading] = useState(true);
-  const iterator = dia.keys();
 
   const handleChange = ({ target }) => {
     setValues((state) => ({
@@ -103,6 +102,15 @@ const Inputs = ({ nombre, coleccion }) => {
       setDia(docs);
     });
 
+    // const q = query(collection(db, "Tobi"));
+    // const unsubscribe = onSnapshot(q, (querySnapshot) => {
+    //   const docs = [];
+    //   querySnapshot.forEach((doc) => {
+    //     docs.push({ ...doc.data(), id: doc.id });
+
+    //   });
+    //   setDia(docs);
+    // });
   };
 
   useEffect(() => {
@@ -110,12 +118,10 @@ const Inputs = ({ nombre, coleccion }) => {
     setTimeout(setLoading, 1000, false);
   }, []);
 
-  const borrarServicio = async () => {
-    const borrarFirestore = async () => {
-      await deleteDoc(doc(db, `${coleccion}`, id));
-    };
-    borrarFirestore();
+  const borrarFirestore = async (id) => {
+    await deleteDoc(doc(db, `${coleccion}`, id));
   };
+
   return (
     <div className="bordes">
       <h1 className="titulo-nombre">{nombre}</h1>
@@ -272,7 +278,7 @@ const Inputs = ({ nombre, coleccion }) => {
             <li key={uuidv4()}>
               ${x.dia}
               <button
-                onClick={() => borrarServicio()}
+                onClick={() => borrarFirestore(id)}
                 className="badge bg-danger rounded-pill boton-eliminar"
               >
                 Eliminar
