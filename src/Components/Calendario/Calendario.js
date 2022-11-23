@@ -2,7 +2,7 @@ import format from "date-fns/format";
 import getDay from "date-fns/getDay";
 import parse from "date-fns/parse";
 import startOfWeek from "date-fns/startOfWeek";
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useMemo } from "react";
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import DatePicker from "react-datepicker";
@@ -14,8 +14,6 @@ import "./Calendario.css"
 const eventos = [];
 const Calendario = () => {
 
-
-
   const [newEvent, setNewEvent] = useState({
     title: "",
     start: "",
@@ -25,6 +23,8 @@ const Calendario = () => {
   });
   const [allEvents, setAllEvents] = useState(eventos);
 
+
+
   const handleAddEvents = () => {
     setAllEvents([...allEvents, newEvent]);
   };
@@ -33,7 +33,7 @@ const Calendario = () => {
     ({ start, end }) => {
       const title = window.prompt('New Event name')
       if (title) {
-        setAllEvents((prev) => [...prev, { start, end, title }])
+        setAllEvents((prev) => [...prev, { start, end, title, id:uuidv4() }])
       }
     },
     [allEvents]
@@ -55,6 +55,8 @@ const Calendario = () => {
     getDay,
     locales,
   });
+
+console.log(allEvents)
 
   return (
     <div>
