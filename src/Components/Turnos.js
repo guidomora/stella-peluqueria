@@ -4,7 +4,14 @@ import Calendario from "./Calendario/Calendario";
 const Turnos = () => {
   return (
     <div>
-       <Calendario />
+       <Calendario nombre={"Tobi"}/>
+       <Calendario nombre={"Karina"}/>
+       <Calendario nombre={"Michael"}/>
+       <Calendario nombre={"Nora"}/>
+       <Calendario nombre={"Estela"}/>
+       <Calendario nombre={"Candela"}/>
+       <Calendario nombre={"Vanesa"}/>
+       <Calendario nombre={"Romina"}/>
     </div>
   );
 };
