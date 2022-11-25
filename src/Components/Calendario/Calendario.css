@@ -1,3 +1,14 @@
+.turnos-title {
+    text-align: center;
+    margin: 30px;
+}
+
+.calendar-subContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
 .rbc-event {
     background-color: rgb(98, 0, 255);
     border:solid 2px rgb(0, 0, 0);
@@ -21,3 +32,49 @@
     background-color: rgb(146, 178, 221);
 }
 
+.rbc-show-more {
+    color: rgb(0, 0, 0);
+    font-size: 16px;
+}
+
+.guardado {
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 170px;
+    height: 50px;
+    border: solid 1px black;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 0px 20px;
+    box-shadow: 5px 5px 20px rgb(0, 0, 0, 0.3);
+    background-color:rgb(90, 33, 182);
+    cursor: pointer;
+}
+
+.save-text {
+    color: white;
+    margin: 0px;
+}
+
+.delete-button{
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    box-shadow: 5px 5px 20px rgb(0, 0, 0, 0.3);
+}
+
+.save-icon {
+    color: white;
+    margin: 0px 10px;
+}
+
+.delete-icon {
+    margin: 0px 7px;
+}
