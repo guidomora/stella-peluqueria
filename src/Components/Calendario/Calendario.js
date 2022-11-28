@@ -12,7 +12,7 @@ const Calendario = ({ nombre, turno }) => {
   const [allEvents, setAllEvents] = useState([]);
 
   const handleSelectSlot = useCallback(
-    ({ start= new Date(start), end= new Date(end), allDay = false }) => {
+    ({ start, end, allDay = false }) => {
       const id = uuidv4();
       const title = window.prompt("Turno:");
       if (title) {
@@ -43,12 +43,17 @@ const Calendario = ({ nombre, turno }) => {
 
 // Get the data from localStorage
 
-  const obtenerDatos = () => {
-   const items = JSON.parse(localStorage.getItem(`${turno}`));
-    if (items) {
-      setAllEvents(items);
-    } 
-  }
+const obtenerDatos = () => {
+  const items = JSON.parse(localStorage.getItem(`${turno}`));
+   if (items) {
+     const events = items.map(item => ({
+      ...item,
+      start: new Date(item.start),
+      end: new Date(item.end)
+     }))
+     setAllEvents(events);
+   } 
+ }
   
 
   useEffect(() => {
@@ -95,6 +100,7 @@ const Calendario = ({ nombre, turno }) => {
         selectable
         popup={true}
         style={{ height: 900, width: 1400, margin: "50px" }}
+        view="week"
       />
     </div>
   );
