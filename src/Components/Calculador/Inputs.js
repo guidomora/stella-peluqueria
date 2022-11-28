@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect } from "react";
 import "./Empleados/Empleados-Style/Tobi.css";
 import {
   doc,
@@ -101,16 +101,6 @@ const Inputs = ({ nombre, coleccion }) => {
       });
       setDia(docs);
     });
-
-    // const q = query(collection(db, "Tobi"));
-    // const unsubscribe = onSnapshot(q, (querySnapshot) => {
-    //   const docs = [];
-    //   querySnapshot.forEach((doc) => {
-    //     docs.push({ ...doc.data(), id: doc.id });
-
-    //   });
-    //   setDia(docs);
-    // });
   };
 
   useEffect(() => {
@@ -121,6 +111,14 @@ const Inputs = ({ nombre, coleccion }) => {
   const borrarFirestore = async (id) => {
     await deleteDoc(doc(db, `${coleccion}`, id));
   };
+
+
+  // const sumaFinal = () => {
+  //   const total = []
+  //   total.push(parseInt(dia))
+  //   const suma2 = total.reduce((prev, current) => prev + current, 0)
+  //   console.log(suma2)
+  // }
 
   return (
     <div className="bordes">
@@ -287,6 +285,7 @@ const Inputs = ({ nombre, coleccion }) => {
           ))
         )}
       </ul>
+      <p onClick={() => sumaFinal()}>suma</p>
     </div>
   );
 };

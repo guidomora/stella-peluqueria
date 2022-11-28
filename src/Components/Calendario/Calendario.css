@@ -24,13 +24,14 @@
 }
 
 .rbc-event {
-    border: solid 3px black;
-    
+    border: solid 3px black;    
 }
 
-.rbc-today {
-    background-color: rgb(146, 178, 221);
-}
+
+
+/* .rbc-today {
+    background-color: rgb(220, 221, 146);
+} */
 
 .rbc-show-more {
     color: rgb(0, 0, 0);
