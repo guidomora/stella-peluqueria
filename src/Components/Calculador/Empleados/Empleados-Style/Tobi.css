@@ -58,3 +58,35 @@
   list-style: none;
 }
 
+.total {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: baseline;
+}
+
+.suma-total {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  margin-top: 25px;
+  margin-left: 5px;
+  height: 40px;
+  width: 170px;
+  border: solid 2px black;
+  border-radius: 5px;
+  color: white;
+  background-color: rgb(98, 0, 255);
+  cursor: pointer;
+}
+
+.total-texto {
+  font-weight: bold;
+  font-size: 19px;
+  margin-left: 10px;
+}
+
+

@@ -34,6 +34,7 @@ const Inputs = ({ nombre, coleccion }) => {
   const [dia, setDia] = useState([]);
   const [id, setId] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [total, setTotal] = useState([]);
 
   const handleChange = ({ target }) => {
     setValues((state) => ({
@@ -112,13 +113,11 @@ const Inputs = ({ nombre, coleccion }) => {
     await deleteDoc(doc(db, `${coleccion}`, id));
   };
 
-
-  // const sumaFinal = () => {
-  //   const total = []
-  //   total.push(parseInt(dia))
-  //   const suma2 = total.reduce((prev, current) => prev + current, 0)
-  //   console.log(suma2)
-  // }
+  const sumaFinal = () => {
+    const mapeo = dia.map((dia) => dia.dia);
+    const reducir = mapeo.reduce((prev, current) => prev + current);
+    setTotal(reducir);
+  };
 
   return (
     <div className="bordes">
@@ -261,11 +260,11 @@ const Inputs = ({ nombre, coleccion }) => {
       </div>
       <button
         onClick={cuenta}
-        className="badge bg-success rounded-pill boton-precio"
+        className="badge bg-success  boton-precio"
       >
         Click
       </button>
-      <p>Total: ${prec}</p>
+      <p>Total por dia: ${prec}</p>
       <ul className="lista-dias">
         {loading ? (
           <div className="spinner-grow" role="status">
@@ -277,7 +276,7 @@ const Inputs = ({ nombre, coleccion }) => {
               ${x.dia}
               <button
                 onClick={() => borrarFirestore(id)}
-                className="badge bg-danger rounded-pill boton-eliminar"
+                className="badge bg-danger boton-eliminar"
               >
                 Eliminar
               </button>
@@ -285,7 +284,11 @@ const Inputs = ({ nombre, coleccion }) => {
           ))
         )}
       </ul>
-      <p onClick={() => sumaFinal()}>suma</p>
+      <div className="total">
+        <p onClick={() => sumaFinal()} className="suma-total">Suma Total del mes</p>
+      <p className="total-texto">${total}</p>
+      </div>
+      
     </div>
   );
 };

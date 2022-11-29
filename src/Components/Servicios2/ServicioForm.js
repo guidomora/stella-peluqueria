@@ -42,7 +42,7 @@ const ServicioForm = (props) => {
           value={inputs.precio}
           onChange={handleChange}
         />
-        <button className="bg-success rounded-pill boton-add">Agregar</button>
+        <button className=" boton-add">Agregar</button>
       </form>
     </div>
   );

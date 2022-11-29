@@ -54,8 +54,6 @@ const ServiciosLista = ({categoria, coleccion}) => {
     borrarFirestore();
   };
 
-  const editarServicio = () => {};
-
   return (
     <div className="peluqueria">
       <h2 className="subtitulos">{categoria}</h2>

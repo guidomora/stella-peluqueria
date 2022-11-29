@@ -24,7 +24,7 @@ const Validacion = () => {
           value={values.user || ""}
           onChange={handleChange}
         />
-        <p className="text">Password</p>
+        <p className="password">Password</p>
         <input
           className="input"
           type="password"
@@ -33,7 +33,7 @@ const Validacion = () => {
           onChange={handleChange}
         />
         {values.user === usuario && values.password === contra ? (
-          <button className="button"><Link to={"/calculador"}>Ingresar</Link></button>
+          <button className="button"><Link to={"/calculador"} className="ingreso">Ingresar</Link></button>
         ) : null}
       </div>
     </div>
