@@ -12,6 +12,7 @@
 .rbc-event {
     background-color: rgb(98, 0, 255);
     border:solid 2px rgb(0, 0, 0);
+    font-size: 20px;
 }
 
 
@@ -27,11 +28,6 @@
     border: solid 3px black;    
 }
 
-
-
-/* .rbc-today {
-    background-color: rgb(220, 221, 146);
-} */
 
 .rbc-show-more {
     color: rgb(0, 0, 0);

@@ -8,6 +8,8 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import "./Calendario.css";
 import { v4 as uuidv4 } from "uuid";
 
+
+
 const Calendario = ({ nombre, turno }) => {
   const [allEvents, setAllEvents] = useState([]);
 
@@ -67,6 +69,8 @@ const obtenerDatos = () => {
 
   console.log(allEvents);
 
+
+
   return (
     <div>
       <div className="calendar-subContainer">
@@ -104,8 +108,10 @@ const obtenerDatos = () => {
         onSelectSlot={handleSelectSlot}
         selectable
         popup={true}
-        style={{ height: 900, width: 1400, margin: "50px" }}
-        view="week"
+        style={{ height: 900, width: 1200, margin: "50px" }}
+        defaultView="day"
+        min={new Date("December 25, 1995 9:00:00")}
+        max={new Date("December 25, 1995 22:00:00")}
       />
     </div>
   );
