@@ -1,19 +1,16 @@
 import "firebase/firestore";
 import { initializeApp } from "firebase/app";
-import {
-  getFirestore,
-} from "firebase/firestore";
+import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyD07T3FHJaenEs2DpSSS2xggLEwNdjybTg",
-  authDomain: "peluqueria-stella.firebaseapp.com",
-  projectId: "peluqueria-stella",
-  storageBucket: "peluqueria-stella.appspot.com",
-  messagingSenderId: "956303484600",
-  appId: "1:956303484600:web:60ab76ac2d8a4ddf84764d",
+  apiKey: "AIzaSyCJMDaYN3ph1w2AxWAxhzrERRhOX7kYsfY",
+  authDomain: "preoyecto-peluqueria.firebaseapp.com",
+  projectId: "preoyecto-peluqueria",
+  storageBucket: "preoyecto-peluqueria.appspot.com",
+  messagingSenderId: "941603674843",
+  appId: "1:941603674843:web:e4bc69bfe8dec10a544afe",
 };
-
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
