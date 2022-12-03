@@ -4,8 +4,8 @@ import "../Styles/Validacion.css";
 
 const Validacion = () => {
   const [values, setValues] = useState({ user: "", password: "" });
-  const usuario = "user";
-  const contra = "user100";
+  const usuario = "tobi";
+  const contra = "stella99";
 
   const handleChange = ({ target }) => {
     setValues((state) => ({
@@ -16,7 +16,7 @@ const Validacion = () => {
   return (
     <div className="container">
       <div className="form-container">
-        <p className="text">User = user</p>
+        <p className="text">User</p>
         <input
           className="input"
           type="text"
@@ -24,7 +24,7 @@ const Validacion = () => {
           value={values.user || ""}
           onChange={handleChange}
         />
-        <p className="password">Password = user100</p>
+        <p className="password">Password </p>
         <input
           className="input"
           type="password"
