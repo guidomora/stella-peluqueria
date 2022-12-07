@@ -108,10 +108,10 @@ const obtenerDatos = () => {
         onSelectSlot={handleSelectSlot}
         selectable
         popup={true}
-        style={{ height: 900, width: 1200, margin: "50px" }}
         defaultView="day"
         min={new Date("December 25, 1995 9:00:00")}
         max={new Date("December 25, 1995 22:00:00")}
+        className="calendario"
       />
     </div>
   );

@@ -1,3 +1,9 @@
+.calendario {
+    height: 900px;
+    width: 1200px;
+    margin: 50px;
+}
+
 .turnos-title {
     text-align: center;
     margin: 30px;
@@ -74,4 +80,74 @@
 
 .delete-icon {
     margin: 0px 7px;
+}
+
+/* media queries */
+
+@media only screen and (max-width: 767px) {
+    .calendario {
+        height: 900px;
+        width: 280px;
+        margin: 0px;
+        font-size: 14px;
+    }
+
+    .calendar-subContainer {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .delete-button{
+        font-size: 15px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        box-shadow: 5px 5px 20px rgb(0, 0, 0, 0.3);
+        width: 98px;
+        height: 30px;
+        margin: 15px;
+    }
+
+    .delete-icon {
+        margin: 0px 4px;
+        height: 16px;
+        width: 16px;
+    }
+
+    .guardado {
+        font-size: 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        width: 120px;
+        height: 30px;
+        border: solid 1px black;
+        border-radius: 5px;
+        padding: 10px;
+        margin: 0px 20px;
+        box-shadow: 5px 5px 20px rgb(0, 0, 0, 0.3);
+        background-color:rgb(90, 33, 182);
+        cursor: pointer;
+    }
+
+    .save-icon {
+        color: white;
+        margin: 0px 10px;
+        height: 16px;
+        width: 16px;
+    }
+
+    .rbc-event {
+        background-color: rgb(98, 0, 255);
+        border:solid 2px rgb(0, 0, 0);
+        font-size: 15px;
+    }
+
 }
