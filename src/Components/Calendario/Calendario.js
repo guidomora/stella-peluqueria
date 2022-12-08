@@ -7,6 +7,17 @@ import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "./Calendario.css";
 import { v4 as uuidv4 } from "uuid";
+import { db } from "../Firebase";
+import {
+  doc,
+  setDoc,
+  collection,
+  onSnapshot,
+  query,
+  deleteDoc,
+  addDoc,
+} from "firebase/firestore";
+
 
 
 
@@ -37,24 +48,38 @@ const Calendario = ({ nombre, turno }) => {
   });
 
 // Save the data to localStorage
-
-  const saveData = () => {
-    localStorage.setItem(`${turno}`, JSON.stringify(allEvents));
-    console.log("guardado");
-  };
+  // const saveData = () => {
+  //   localStorage.setItem(`${turno}`, JSON.stringify(allEvents));
+  //   console.log("guardado");
+  // };
 
 // Get the data from localStorage
+// const items = JSON.parse(localStorage.getItem(`${turno}`));
+// if (items) {
+//   const events = items.map(item => ({
+//    ...item,
+//    start: new Date(item.start),
+//    end: new Date(item.end)
+//   }))
+//   setAllEvents(events);
+// }
+
+const saveData = async (event) => {
+  const updatedServices = [event, ...allEvents];
+    setAllEvents(updatedServices);
+  const docRef = await addDoc(collection(db, "turno-tobi"), {
+      allDay: event.allDay,
+      start: event.start,
+      end: event.end,
+      id: event.id,
+      title: event.title
+    });
+    console.log(docRef)
+}
+
 
 const obtenerDatos = () => {
-  const items = JSON.parse(localStorage.getItem(`${turno}`));
-   if (items) {
-     const events = items.map(item => ({
-      ...item,
-      start: new Date(item.start),
-      end: new Date(item.end)
-     }))
-     setAllEvents(events);
-   } 
+
  }
 
 
@@ -75,8 +100,8 @@ const obtenerDatos = () => {
     <div>
       <div className="calendar-subContainer">
         <h2>{nombre}</h2>
-        <div onClick={() => saveData()} className="guardado">
-          <p className="save-text"> Guardar turno</p>
+        <div className="guardado">
+          <p className="save-text" onClick={() => saveData()}> Guardar turno</p>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="27"
