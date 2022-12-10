@@ -9,6 +9,7 @@ import "./Calendario.css";
 import { v4 as uuidv4 } from "uuid";
 import { db } from "../Firebase";
 import {
+  getDocs,
   doc,
   setDoc,
   collection,
@@ -16,6 +17,7 @@ import {
   query,
   deleteDoc,
   addDoc,
+  Timestamp 
 } from "firebase/firestore";
 
 const Calendario = ({ nombre, turno }) => {
@@ -75,21 +77,32 @@ const Calendario = ({ nombre, turno }) => {
 
   const ver = () => {
     const saveData = async () => {
-      const mapeo2 = allEvents.map((eventos) => eventos);
-      await setDoc(doc(db, "turno-tobi", mapeo2.id), {
-        allDay: mapeo2.allDay,
-        start: mapeo2.start,
-        end: mapeo2.end,
-        id: mapeo2.id,
-        title: mapeo2.title,
+      const mapeo2 = allEvents.map((eventos) =>  eventos);
+      const ultimoObj = mapeo2[mapeo2.length -1]
+      const docRef = await addDoc(collection(db, "turno-tobi"), {
+        allDay: ultimoObj.allDay,
+        start: Timestamp.fromDate(ultimoObj.start),
+        end: Timestamp.fromDate(ultimoObj.end),
+        id: ultimoObj.id,
+        title: ultimoObj.title,
       });
-      console.log(mapeo2);
+      console.log("docRef", docRef.id);
+      console.log("a verrr",  ultimoObj)
     };
     saveData()
   };
-  ver();
 
-  const obtenerDatos = () => {};
+
+  const obtenerDatos = async () => {
+    const q = query(collection(db, "turno-tobi"));
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      const cities = [];
+      querySnapshot.forEach((doc) => {
+          cities.push(doc.data().name);
+      });
+     setAllEvents(cities);
+    });
+  };
 
   const borrarTurno = () => {
     localStorage.removeItem(`${turno}`);
@@ -106,7 +119,7 @@ const Calendario = ({ nombre, turno }) => {
       <div className="calendar-subContainer">
         <h2>{nombre}</h2>
         <div className="guardado">
-          <p className="save-text"> Guardar turno</p>
+          <p className="save-text" onClick={() => ver()}> Guardar turno</p>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="27"
