@@ -7,18 +7,7 @@ import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "./Calendario.css";
 import { v4 as uuidv4 } from "uuid";
-import { db } from "../Firebase";
-import {
-  getDocs,
-  doc,
-  setDoc,
-  collection,
-  onSnapshot,
-  query,
-  deleteDoc,
-  addDoc,
-  Timestamp 
-} from "firebase/firestore";
+import PendienteLista from "./PendienteLista";
 
 const Calendario = ({ nombre, turno }) => {
   const [allEvents, setAllEvents] = useState([]);
@@ -46,21 +35,23 @@ const Calendario = ({ nombre, turno }) => {
   });
 
   // Save the data to localStorage
-  // const saveData = () => {
-  //   localStorage.setItem(`${turno}`, JSON.stringify(allEvents));
-  //   console.log("guardado");
-  // };
+  const saveData = () => {
+    localStorage.setItem(`${turno}`, JSON.stringify(allEvents));
+    console.log("guardado");
+  };
 
   // Get the data from localStorage
-  // const items = JSON.parse(localStorage.getItem(`${turno}`));
-  // if (items) {
-  //   const events = items.map(item => ({
-  //    ...item,
-  //    start: new Date(item.start),
-  //    end: new Date(item.end)
-  //   }))
-  //   setAllEvents(events);
-  // }
+  const obtenerDatos = () => {
+    const items = JSON.parse(localStorage.getItem(`${turno}`));
+    if (items) {
+      const events = items.map((item) => ({
+        ...item,
+        start: new Date(item.start),
+        end: new Date(item.end),
+      }));
+      setAllEvents(events);
+    }
+  };
 
   // const saveData = async (event) => {
   //   const updatedServices = [event, ...allEvents];
@@ -75,35 +66,6 @@ const Calendario = ({ nombre, turno }) => {
   //     console.log(docRef)
   // }
 
-  const ver = () => {
-    const saveData = async () => {
-      const mapeo2 = allEvents.map((eventos) =>  eventos);
-      const ultimoObj = mapeo2[mapeo2.length -1]
-      const docRef = await addDoc(collection(db, "turno-tobi"), {
-        allDay: ultimoObj.allDay,
-        start: Timestamp.fromDate(ultimoObj.start),
-        end: Timestamp.fromDate(ultimoObj.end),
-        id: ultimoObj.id,
-        title: ultimoObj.title,
-      });
-      console.log("docRef", docRef.id);
-      console.log("a verrr",  ultimoObj)
-    };
-    saveData()
-  };
-
-
-  const obtenerDatos = async () => {
-    const q = query(collection(db, "turno-tobi"));
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      const cities = [];
-      querySnapshot.forEach((doc) => {
-          cities.push(doc.data().name);
-      });
-     setAllEvents(cities);
-    });
-  };
-
   const borrarTurno = () => {
     localStorage.removeItem(`${turno}`);
   };
@@ -116,10 +78,16 @@ const Calendario = ({ nombre, turno }) => {
 
   return (
     <div>
+      <div>
+       <PendienteLista />
+      </div>
       <div className="calendar-subContainer">
         <h2>{nombre}</h2>
         <div className="guardado">
-          <p className="save-text" onClick={() => ver()}> Guardar turno</p>
+          <p className="save-text" onClick={() => saveData()}>
+            {" "}
+            Guardar turno
+          </p>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="27"
