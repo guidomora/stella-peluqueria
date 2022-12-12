@@ -12,7 +12,7 @@ import {
   import { db } from "../Firebase";
   import React, { useEffect, useState } from "react";
 
-const PendienteLista = () => {
+const PendienteLista = ({nombre, pendiente}) => {
     const [services, setServices] = useState([]);
     const [loading, setLoading] = useState(true);
   
@@ -20,14 +20,14 @@ const PendienteLista = () => {
       const updatedServices = [service, ...services];
       setServices(updatedServices);
   
-      await setDoc(doc(db, "turno-tobi", service.id), {
+      await setDoc(doc(db, `${pendiente}`, service.id), {
         turno: service.turno,
         id: service.id,
       });
     };
   
     const obtenerServicios = async () => {
-      const q = query(collection(db, "turno-tobi"));
+      const q = query(collection(db, `${pendiente}`));
       const unsubscribe = onSnapshot(q, (querySnapshot) => {
         const docs = [];
         querySnapshot.forEach((doc) => {
@@ -47,7 +47,7 @@ const PendienteLista = () => {
       setServices(updatedServices);
   
       const borrarFirestore = async () => {
-        await deleteDoc(doc(db, "turno-tobi", id));
+        await deleteDoc(doc(db, `${pendiente}`, id));
       };
   
       borrarFirestore();
@@ -55,7 +55,7 @@ const PendienteLista = () => {
   
     return (
       <div className="peluqueria">
-        <h2 className="subtitulos">hola</h2>
+        <h2 className="subtitulos">{nombre}</h2>
         <PendientesForm  onSubmit={agregarServicio}/>
         <div>
           {" "}

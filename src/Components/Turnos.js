@@ -6,14 +6,14 @@ const Turnos = () => {
   return (
     <div>
       <h1 className="turnos-title">Turnos</h1>
-       <Calendario nombre={"Tobi"} turno={"Tobi"}/>
-       <Calendario nombre={"Karina"} turno={"Karina"}/>
-       <Calendario nombre={"Michael"} turno={"Michael"}/>
-       <Calendario nombre={"Nora"} turno={"Nora"}/>
-       <Calendario nombre={"Estela"} turno={"Estela"}/>
-       <Calendario nombre={"Candela"} turno={"Candela"}/>
-       <Calendario nombre={"Vanesa"} turno={"Vanesa"}/>
-       <Calendario nombre={"Romina"} turno={"Romina"}/>
+       <Calendario nombre={"Tobi"} turno={"Tobi"} pendiente={"turno-tobi"}/>
+       <Calendario nombre={"Karina"} turno={"Karina"} pendiente={"turno-karina"}/>
+       <Calendario nombre={"Michael"} turno={"Michael"} pendiente={"turno-michael"}/>
+       <Calendario nombre={"Nora"} turno={"Nora"} pendiente={"turno-nora"}/>
+       <Calendario nombre={"Estela"} turno={"Estela"} pendiente={"turno-estela"}/>
+       <Calendario nombre={"Candela"} turno={"Candela"} pendiente={"turno-candela"}/>
+       <Calendario nombre={"Vanesa"} turno={"Vanesa"} pendiente={"turno-vanesa"}/>
+       <Calendario nombre={"Romina"} turno={"Romina"} pendiente={"turno-romina"}/>
     </div>
   );
 };

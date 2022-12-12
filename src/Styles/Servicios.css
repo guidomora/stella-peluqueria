@@ -111,7 +111,6 @@
 
 /* ---------- */
 
-
 /* ServicioSolo */
 
 .tamano {
@@ -138,3 +137,30 @@
 /* --------------- */
 
 /* ServicioLista */
+
+@media only screen and (max-width: 767px) {
+  .peluqueria {
+    width: 300px;
+    margin: 15px 0px;
+  }
+
+  .input-form {
+    width: 170px;
+  }
+
+  .servicios-form {
+    font-size: 13px;
+  }
+
+  .pendientes-container {
+    width: 270px;
+  }
+
+  .tamano{
+    font-size: 15px;
+  }
+
+  .eliminar {
+    font-size: 15px;
+  }
+}

@@ -9,7 +9,7 @@ import "./Calendario.css";
 import { v4 as uuidv4 } from "uuid";
 import PendienteLista from "./PendienteLista";
 
-const Calendario = ({ nombre, turno }) => {
+const Calendario = ({ nombre, turno, pendiente }) => {
   const [allEvents, setAllEvents] = useState([]);
 
   const handleSelectSlot = useCallback(
@@ -79,7 +79,7 @@ const Calendario = ({ nombre, turno }) => {
   return (
     <div>
       <div>
-       <PendienteLista />
+       <PendienteLista nombre={nombre} pendiente={pendiente}/>
       </div>
       <div className="calendar-subContainer">
         <h2>{nombre}</h2>
